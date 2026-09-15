@@ -95,7 +95,7 @@ Versão publicada: https://vscaueh.github.io/AlgFundamentais/
 
 ## Vídeo de depuração
 
-Disponível em: [link]
+Disponível em: https://share.vidyard.com/watch/NqDTxpjj4x1tKVERjj2Ld7
 
 ## Descrição dos algoritmos
 
