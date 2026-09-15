@@ -91,6 +91,8 @@ Os valores de entrada estão definidos em constantes no início de cada arquivo.
 
 O arquivo `web/index.html` é uma página estática que executa os seis algoritmos diretamente no navegador. Para cada algoritmo, a página recebe a entrada, mostra o resultado e exibe o passo a passo percorrido até chegar a ele. Basta abrir o arquivo no navegador; não é necessário servidor nem instalação de dependências.
 
+Versão publicada: https://vscaueh.github.io/AlgFundamentais/
+
 ## Vídeo de depuração
 
 Disponível em: [link]
