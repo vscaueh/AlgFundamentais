@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algoritmos Fundamentais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --papel: #EEF1F5;
+  --grade: #D7DEE7;
+  --folha: #FBFCFD;
+  --tinta: #16233A;
+  --tinta-fraca: #5B6B81;
+  --caneta: #BE3A2E;
+  --realce: #FCF0B4;
+  --borda: #C9D3DF;
+  --sombra: rgba(22, 35, 58, .07);
+}
+ 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --papel: #0D1624;
+    --grade: #1A2740;
+    --folha: #141F31;
+    --tinta: #D8E3F2;
+    --tinta-fraca: #8497B3;
+    --caneta: #FF8172;
+    --realce: rgba(255, 205, 90, .2);
+    --borda: #24344F;
+    --sombra: rgba(0, 0, 0, .3);
+  }
+}
+ 
+:root[data-theme="dark"] {
+  --papel: #0D1624;
+  --grade: #1A2740;
+  --folha: #141F31;
+  --tinta: #D8E3F2;
+  --tinta-fraca: #8497B3;
+  --caneta: #FF8172;
+  --realce: rgba(255, 205, 90, .2);
+  --borda: #24344F;
+  --sombra: rgba(0, 0, 0, .3);
+}
+ 
+* { box-sizing: border-box; }
+ 
+body {
+  margin: 0;
+  padding: 2rem 1.25rem 4rem;
+  background-color: var(--papel);
+  background-image:
+    linear-gradient(var(--grade) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grade) 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: var(--tinta);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+ 
+.folha {
+  max-width: 62rem;
+  margin: 0 auto;
+}
+ 
+header { margin-bottom: 2rem; }
+ 
+h1 {
+  margin: 0 0 .35rem;
+  font-size: clamp(1.6rem, 4.5vw, 2.35rem);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+}
+ 
+.subtitulo {
+  margin: 0;
+  max-width: 44rem;
+  color: var(--tinta-fraca);
+}
+ 
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem .5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--borda);
+}
+ 
+.aba {
+  padding: .5rem .2rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--tinta-fraca);
+  font-family: inherit;
+  font-size: .95rem;
+  cursor: pointer;
+  transition: color .12s;
+}
+ 
+.aba:hover { color: var(--tinta); }
+ 
+.aba[aria-selected="true"] {
+  color: var(--tinta);
+  border-bottom-color: var(--caneta);
+  font-weight: 500;
+}
+ 
+.aba:focus-visible {
+  outline: 2px solid var(--caneta);
+  outline-offset: 3px;
+}
+ 
+.bancada {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+ 
+@media (max-width: 46rem) {
+  .bancada { grid-template-columns: 1fr; }
+}
+ 
+.painel {
+  padding: 1.35rem;
+  border: 1px solid var(--borda);
+  border-radius: 3px;
+  background: var(--folha);
+  box-shadow: 0 1px 2px var(--sombra);
+}
+ 
+h2 {
+  margin: 0 0 .5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+ 
+.definicao {
+  margin: 0 0 1.25rem;
+  color: var(--tinta-fraca);
+  font-size: .92rem;
+}
+ 
+label {
+  display: block;
+  margin-bottom: .3rem;
+  font-size: .92rem;
+  font-weight: 500;
+}
+ 
+.dica {
+  margin: 0 0 .4rem;
+  color: var(--tinta-fraca);
+  font-size: .82rem;
+}
+ 
+input[type="text"] {
+  width: 100%;
+  padding: .6rem .7rem;
+  border: 1px solid var(--borda);
+  border-radius: 2px;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .95rem;
+}
+ 
+input[type="text"]:focus-visible {
+  outline: 2px solid var(--caneta);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+ 
+.executar {
+  width: 100%;
+  margin-top: 1rem;
+  padding: .65rem;
+  border: 0;
+  border-radius: 2px;
+  background: var(--tinta);
+  color: var(--folha);
+  font-family: inherit;
+  font-size: .95rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+ 
+.executar:hover { background: var(--caneta); }
+ 
+.executar:focus-visible {
+  outline: 2px solid var(--caneta);
+  outline-offset: 2px;
+}
+ 
+.resposta {
+  margin: 0 0 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--borda);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(1.3rem, 3.5vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.3;
+  word-break: break-word;
+}
+ 
+.resposta.vazia {
+  color: var(--tinta-fraca);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+ 
+.resposta.erro { color: var(--caneta); font-size: 1rem; }
+ 
+h3 {
+  margin: 0 0 .6rem;
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--tinta-fraca);
+}
+ 
+ol.passos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: passo;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .85rem;
+  line-height: 1.7;
+}
+ 
+ol.passos li {
+  counter-increment: passo;
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: .5rem;
+  padding: .15rem 0;
+}
+ 
+ol.passos li::before {
+  content: counter(passo);
+  color: var(--tinta-fraca);
+  text-align: right;
+}
+ 
+.vetor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem;
+  margin-top: .2rem;
+}
+ 
+.vetor span {
+  padding: .05rem .4rem;
+  border: 1px solid var(--borda);
+  border-radius: 2px;
+}
+ 
+.vetor span.pivo {
+  border-color: var(--caneta);
+  background: var(--realce);
+  color: var(--tinta);
+  font-weight: 600;
+}
+ 
+.corte {
+  margin-top: .6rem;
+  color: var(--tinta-fraca);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: .85rem;
+}
+ 
+footer {
+  max-width: 62rem;
+  margin: 2.5rem auto 0;
+  color: var(--tinta-fraca);
+  font-size: .85rem;
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+ 
+<div class="folha">
+ 
+<header>
+  <h1>Algoritmos Fundamentais</h1>
+  <p class="subtitulo">Seis algoritmos clássicos, com o caminho que cada um percorre até a resposta. Escolha um, informe os dados e execute.</p>
+</header>
+ 
+<nav role="tablist" aria-label="Algoritmos"></nav>
+ 
+<div class="bancada">
+  <section class="painel" aria-label="Entrada">
+    <h2 id="titulo"></h2>
+    <p class="definicao" id="definicao"></p>
+    <label for="entrada" id="rotulo"></label>
+    <p class="dica" id="dica"></p>
+    <input type="text" id="entrada" autocomplete="off" spellcheck="false">
+    <button class="executar" id="botao">Executar</button>
+  </section>
+ 
+  <section class="painel" aria-label="Resultado">
+    <p class="resposta vazia" id="resposta" aria-live="polite">Nenhum resultado ainda.</p>
+    <h3 id="cabecalhoPassos" hidden>Passo a passo</h3>
+    <ol class="passos" id="passos"></ol>
+    <p class="corte" id="corte" hidden></p>
+  </section>
+</div>
+ 
+</div>
+ 
+<footer>
+  <p>Implementações em Java e JavaScript disponíveis no repositório. As funções desta página são as mesmas dos arquivos <code>.js</code>, com um parâmetro extra que registra os passos para exibição.</p>
+</footer>
+ 
+<script>
+"use strict";
+ 
+/* ===================================================================
+   ALGORITMOS
+   Cada função recebe um array opcional `passos`, usado apenas para
+   registrar o caminho percorrido e exibi-lo na tela. A lógica é
+   idêntica à dos arquivos entregues em JavaScript e Java.
+   =================================================================== */
+ 
+function Primo(n, passos = []) {
+  if (n < 2) {
+    passos.push({ texto: n + " é menor que 2, portanto não é primo" });
+    return false;
+  }
+ 
+  for (let i = 2; i * i <= n; i++) {
+    const resto = n % i;
+    if (resto === 0) {
+      passos.push({ texto: n + " ÷ " + i + " tem resto 0 — divisor encontrado" });
+      return false;
+    }
+    passos.push({ texto: n + " ÷ " + i + " tem resto " + resto });
+  }
+  passos.push({ texto: "Nenhum divisor até √" + n + " (≈ " + Math.floor(Math.sqrt(n)) + ")" });
+  return true;
+}
+ 
+function Somatorio(numeros, passos = []) {
+  let soma = 0;
+ 
+  for (let i = 0; i < numeros.length; i++) {
+    const anterior = soma;
+    soma += numeros[i];
+    passos.push({ texto: anterior + " + " + numeros[i] + " = " + arredondar(soma) });
+  }
+  return soma;
+}
+ 
+function Fibonacci(n, passos = []) {
+  if (n === 0) {
+    passos.push({ texto: "F(0) = 0" });
+    return 0;
+  }
+ 
+  let anterior = 0;
+  let atual = 1;
+  passos.push({ texto: "F(0) = 0" });
+  passos.push({ texto: "F(1) = 1" });
+ 
+  for (let i = 2; i <= n; i++) {
+    const proximo = anterior + atual;
+    passos.push({ texto: "F(" + i + ") = " + atual + " + " + anterior + " = " + proximo });
+    anterior = atual;
+    atual = proximo;
+  }
+  return atual;
+}
+ 
+function Mdc(a, b, passos = []) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+ 
+  while (b !== 0) {
+    const resto = a % b;
+    passos.push({ texto: a + " ÷ " + b + " tem resto " + resto });
+    a = b;
+    b = resto;
+  }
+  passos.push({ texto: "Resto zerou — o mdc é " + a });
+  return a;
+}
+ 
+function Quicksort(arr, inicio = 0, fim = arr.length - 1, passos = []) {
+  if (inicio < fim) {
+    const p = Particionar(arr, inicio, fim, passos);
+    Quicksort(arr, inicio, p - 1, passos);
+    Quicksort(arr, p + 1, fim, passos);
+  }
+  return arr;
+}
+ 
+function Particionar(arr, inicio, fim, passos = []) {
+  const pivo = arr[fim];
+  let i = inicio - 1;
+ 
+  for (let j = inicio; j < fim; j++) {
+    if (arr[j] <= pivo) {
+      i++;
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  }
+  [arr[i + 1], arr[fim]] = [arr[fim], arr[i + 1]];
+ 
+  passos.push({
+    texto: "Pivô " + pivo + " (trecho " + inicio + "–" + fim + ") fixado no índice " + (i + 1),
+    estado: arr.slice(),
+    destaque: i + 1
+  });
+  return i + 1;
+}
+ 
+function Contagem(dados, passos = []) {
+  let contador = 0;
+ 
+  for (let i = 0; i < dados.length; i++) {
+    if (Number.isInteger(dados[i])) {
+      contador++;
+      passos.push({ texto: dados[i] + " é inteiro — contador passa a " + contador });
+    } else {
+      passos.push({ texto: dados[i] + " tem parte fracionária — contador segue em " + contador });
+    }
+  }
+  return contador;
+}
+ 
+/* ===================================================================
+   LEITURA DE ENTRADA
+   =================================================================== */
+ 
+function arredondar(n) {
+  return Math.round(n * 1e10) / 1e10;
+}
+ 
+function lerInteiro(texto, minimo, maximo) {
+  const limpo = texto.trim();
+  if (limpo === "") throw new Error("Informe um número.");
+  if (!/^-?\d+$/.test(limpo)) throw new Error("Informe um número inteiro, sem casas decimais.");
+ 
+  const n = parseInt(limpo, 10);
+  if (minimo !== undefined && n < minimo) throw new Error("O valor precisa ser no mínimo " + minimo + ".");
+  if (maximo !== undefined && n > maximo) throw new Error("O valor precisa ser no máximo " + maximo + ".");
+  return n;
+}
+ 
+function lerLista(texto, somenteInteiros) {
+  const limpo = texto.trim();
+  if (limpo === "") throw new Error("Informe ao menos um número.");
+ 
+  const partes = limpo.split(/[\s,]+/);
+  if (partes.length > 300) throw new Error("Informe no máximo 300 números.");
+ 
+  return partes.map(function (parte) {
+    if (somenteInteiros && !/^-?\d+$/.test(parte)) {
+      throw new Error("“" + parte + "” não é um número inteiro.");
+    }
+    const n = Number(parte);
+    if (!Number.isFinite(n)) throw new Error("“" + parte + "” não é um número válido.");
+    return n;
+  });
+}
+ 
+/* ===================================================================
+   CONFIGURAÇÃO DOS ALGORITMOS
+   =================================================================== */
+ 
+const ALGORITMOS = [
+  {
+    id: "primo",
+    aba: "Primo",
+    titulo: "Número primo",
+    definicao: "Um inteiro positivo n é primo se for divisível apenas por 1 e por n. A verificação testa divisores até a raiz quadrada de n.",
+    rotulo: "Número a verificar",
+    dica: "Um inteiro. Exemplo: 97",
+    exemplo: "97",
+    executar: function (texto, passos) {
+      const n = lerInteiro(texto, -1e15, 1e15);
+      const primo = Primo(n, passos);
+      return n + (primo ? " é primo" : " não é primo");
+    }
+  },
+  {
+    id: "somatorio",
+    aba: "Somatório",
+    titulo: "Somatório",
+    definicao: "Soma de um conjunto de números. Percorre o conjunto acumulando os valores em uma única variável.",
+    rotulo: "Conjunto de números",
+    dica: "Separados por espaço ou vírgula. Exemplo: 1 2 3 4 5",
+    exemplo: "1 2 3 4 5",
+    executar: function (texto, passos) {
+      const numeros = lerLista(texto, false);
+      return "Soma = " + arredondar(Somatorio(numeros, passos));
+    }
+  },
+  {
+    id: "fibonacci",
+    aba: "Fibonacci",
+    titulo: "Fibonacci",
+    definicao: "Cada termo, a partir do terceiro, é a soma dos dois anteriores. A sequência começa em 0, 1, 1, 2, 3, 5, 8, 13.",
+    rotulo: "Posição N do termo",
+    dica: "Um inteiro de 0 a 78. Exemplo: 8",
+    exemplo: "8",
+    executar: function (texto, passos) {
+      const n = lerInteiro(texto, 0, 78);
+      return "F(" + n + ") = " + Fibonacci(n, passos);
+    }
+  },
+  {
+    id: "mdc",
+    aba: "MDC",
+    titulo: "Máximo divisor comum",
+    definicao: "O maior inteiro que divide a e b. Usa o algoritmo de Euclides: mdc(a, b) = mdc(b, a % b), até o resto chegar a zero.",
+    rotulo: "Dois números",
+    dica: "Separados por espaço. Exemplo: 48 18",
+    exemplo: "48 18",
+    executar: function (texto, passos) {
+      const numeros = lerLista(texto, true);
+      if (numeros.length !== 2) throw new Error("Informe exatamente dois números inteiros.");
+      if (numeros[0] === 0 && numeros[1] === 0) throw new Error("O mdc de 0 e 0 não é definido.");
+      return "mdc(" + numeros[0] + ", " + numeros[1] + ") = " + Mdc(numeros[0], numeros[1], passos);
+    }
+  },
+  {
+    id: "quicksort",
+    aba: "Quicksort",
+    titulo: "Ordenação com Quicksort",
+    definicao: "Escolhe o último elemento como pivô e separa os menores à esquerda e os maiores à direita. Depois repete o processo nas duas metades.",
+    rotulo: "Conjunto a ordenar",
+    dica: "Inteiros separados por espaço. Exemplo: 5 3 8 1 9 2 7",
+    exemplo: "5 3 8 1 9 2 7",
+    executar: function (texto, passos) {
+      const numeros = lerLista(texto, true);
+      const original = numeros.slice();
+      Quicksort(numeros, 0, numeros.length - 1, passos);
+      passos.unshift({ texto: "Conjunto original", estado: original, destaque: -1 });
+      return "[" + numeros.join(", ") + "]";
+    }
+  },
+  {
+    id: "contagem",
+    aba: "Contagem",
+    titulo: "Contagem",
+    definicao: "Percorre o conjunto do primeiro dado ao N-ésimo, ambos inclusive, contando quantos valores são inteiros.",
+    rotulo: "Conjunto de dados",
+    dica: "Separados por espaço. Exemplo: 1 2.5 3 4.7 5",
+    exemplo: "1 2.5 3 4.7 5",
+    executar: function (texto, passos) {
+      const dados = lerLista(texto, false);
+      const total = Contagem(dados, passos);
+      return total + " de " + dados.length + (total === 1 ? " valor é inteiro" : " valores são inteiros");
+    }
+  }
+];
+ 
+const LIMITE_PASSOS = 150;
+ 
+/* ===================================================================
+   INTERFACE
+   =================================================================== */
+ 
+const nav = document.querySelector("nav");
+const elTitulo = document.getElementById("titulo");
+const elDefinicao = document.getElementById("definicao");
+const elRotulo = document.getElementById("rotulo");
+const elDica = document.getElementById("dica");
+const elEntrada = document.getElementById("entrada");
+const elBotao = document.getElementById("botao");
+const elResposta = document.getElementById("resposta");
+const elCabecalhoPassos = document.getElementById("cabecalhoPassos");
+const elPassos = document.getElementById("passos");
+const elCorte = document.getElementById("corte");
+ 
+let atual = ALGORITMOS[0];
+ 
+ALGORITMOS.forEach(function (algoritmo) {
+  const botao = document.createElement("button");
+  botao.className = "aba";
+  botao.type = "button";
+  botao.textContent = algoritmo.aba;
+  botao.setAttribute("role", "tab");
+  botao.setAttribute("aria-selected", algoritmo === atual ? "true" : "false");
+  botao.addEventListener("click", function () {
+    selecionar(algoritmo);
+  });
+  algoritmo.botao = botao;
+  nav.appendChild(botao);
+});
+ 
+function selecionar(algoritmo) {
+  atual = algoritmo;
+ 
+  ALGORITMOS.forEach(function (outro) {
+    outro.botao.setAttribute("aria-selected", outro === algoritmo ? "true" : "false");
+  });
+ 
+  elTitulo.textContent = algoritmo.titulo;
+  elDefinicao.textContent = algoritmo.definicao;
+  elRotulo.textContent = algoritmo.rotulo;
+  elDica.textContent = algoritmo.dica;
+  elEntrada.value = algoritmo.exemplo;
+  limpar();
+  elEntrada.focus();
+}
+ 
+function limpar() {
+  elResposta.className = "resposta vazia";
+  elResposta.textContent = "Nenhum resultado ainda.";
+  elPassos.replaceChildren();
+  elCabecalhoPassos.hidden = true;
+  elCorte.hidden = true;
+}
+ 
+function executar() {
+  const passos = [];
+ 
+  let resposta;
+  try {
+    resposta = atual.executar(elEntrada.value, passos);
+  } catch (erro) {
+    elResposta.className = "resposta erro";
+    elResposta.textContent = erro.message;
+    elPassos.replaceChildren();
+    elCabecalhoPassos.hidden = true;
+    elCorte.hidden = true;
+    return;
+  }
+ 
+  elResposta.className = "resposta";
+  elResposta.textContent = resposta;
+ 
+  const visiveis = passos.slice(0, LIMITE_PASSOS);
+  elPassos.replaceChildren();
+ 
+  visiveis.forEach(function (passo) {
+    const item = document.createElement("li");
+    const bloco = document.createElement("div");
+ 
+    const linha = document.createElement("div");
+    linha.textContent = passo.texto;
+    bloco.appendChild(linha);
+ 
+    if (passo.estado) {
+      const vetor = document.createElement("div");
+      vetor.className = "vetor";
+      passo.estado.forEach(function (valor, indice) {
+        const chip = document.createElement("span");
+        chip.textContent = valor;
+        if (indice === passo.destaque) chip.className = "pivo";
+        vetor.appendChild(chip);
+      });
+      bloco.appendChild(vetor);
+    }
+ 
+    item.appendChild(bloco);
+    elPassos.appendChild(item);
+  });
+ 
+  elCabecalhoPassos.hidden = visiveis.length === 0;
+ 
+  if (passos.length > LIMITE_PASSOS) {
+    elCorte.hidden = false;
+    elCorte.textContent = "Mostrando os primeiros " + LIMITE_PASSOS + " de " + passos.length + " passos.";
+  } else {
+    elCorte.hidden = true;
+  }
+}
+ 
+elBotao.addEventListener("click", executar);
+elEntrada.addEventListener("keydown", function (evento) {
+  if (evento.key === "Enter") executar();
+});
+ 
+selecionar(ALGORITMOS[0]);
+</script>
+ 
+</body>
+</html>
