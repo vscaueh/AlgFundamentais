@@ -19,7 +19,7 @@
   --borda: #C9D3DF;
   --sombra: rgba(22, 35, 58, .07);
 }
- 
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --papel: #0D1624;
@@ -33,7 +33,7 @@
     --sombra: rgba(0, 0, 0, .3);
   }
 }
- 
+
 :root[data-theme="dark"] {
   --papel: #0D1624;
   --grade: #1A2740;
@@ -45,9 +45,9 @@
   --borda: #24344F;
   --sombra: rgba(0, 0, 0, .3);
 }
- 
+
 * { box-sizing: border-box; }
- 
+
 body {
   margin: 0;
   padding: 2rem 1.25rem 4rem;
@@ -61,14 +61,14 @@ body {
   font-size: 1rem;
   line-height: 1.6;
 }
- 
+
 .folha {
   max-width: 62rem;
   margin: 0 auto;
 }
- 
+
 header { margin-bottom: 2rem; }
- 
+
 h1 {
   margin: 0 0 .35rem;
   font-size: clamp(1.6rem, 4.5vw, 2.35rem);
@@ -76,13 +76,13 @@ h1 {
   letter-spacing: -.02em;
   line-height: 1.15;
 }
- 
+
 .subtitulo {
   margin: 0;
   max-width: 44rem;
   color: var(--tinta-fraca);
 }
- 
+
 nav {
   display: flex;
   flex-wrap: wrap;
@@ -91,7 +91,7 @@ nav {
   padding-bottom: .5rem;
   border-bottom: 1px solid var(--borda);
 }
- 
+
 .aba {
   padding: .5rem .2rem;
   border: 0;
@@ -104,31 +104,31 @@ nav {
   cursor: pointer;
   transition: color .12s;
 }
- 
+
 .aba:hover { color: var(--tinta); }
- 
+
 .aba[aria-selected="true"] {
   color: var(--tinta);
   border-bottom-color: var(--caneta);
   font-weight: 500;
 }
- 
+
 .aba:focus-visible {
   outline: 2px solid var(--caneta);
   outline-offset: 3px;
 }
- 
+
 .bancada {
   display: grid;
   grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
   gap: 1.25rem;
   align-items: start;
 }
- 
+
 @media (max-width: 46rem) {
   .bancada { grid-template-columns: 1fr; }
 }
- 
+
 .painel {
   padding: 1.35rem;
   border: 1px solid var(--borda);
@@ -136,32 +136,32 @@ nav {
   background: var(--folha);
   box-shadow: 0 1px 2px var(--sombra);
 }
- 
+
 h2 {
   margin: 0 0 .5rem;
   font-size: 1.05rem;
   font-weight: 600;
 }
- 
+
 .definicao {
   margin: 0 0 1.25rem;
   color: var(--tinta-fraca);
   font-size: .92rem;
 }
- 
+
 label {
   display: block;
   margin-bottom: .3rem;
   font-size: .92rem;
   font-weight: 500;
 }
- 
+
 .dica {
   margin: 0 0 .4rem;
   color: var(--tinta-fraca);
   font-size: .82rem;
 }
- 
+
 input[type="text"] {
   width: 100%;
   padding: .6rem .7rem;
@@ -172,13 +172,13 @@ input[type="text"] {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: .95rem;
 }
- 
+
 input[type="text"]:focus-visible {
   outline: 2px solid var(--caneta);
   outline-offset: 1px;
   border-color: transparent;
 }
- 
+
 .executar {
   width: 100%;
   margin-top: 1rem;
@@ -192,14 +192,14 @@ input[type="text"]:focus-visible {
   font-weight: 500;
   cursor: pointer;
 }
- 
+
 .executar:hover { background: var(--caneta); }
- 
+
 .executar:focus-visible {
   outline: 2px solid var(--caneta);
   outline-offset: 2px;
 }
- 
+
 .resposta {
   margin: 0 0 1.25rem;
   padding-bottom: 1.25rem;
@@ -210,23 +210,23 @@ input[type="text"]:focus-visible {
   line-height: 1.3;
   word-break: break-word;
 }
- 
+
 .resposta.vazia {
   color: var(--tinta-fraca);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 400;
 }
- 
+
 .resposta.erro { color: var(--caneta); font-size: 1rem; }
- 
+
 h3 {
   margin: 0 0 .6rem;
   font-size: .92rem;
   font-weight: 500;
   color: var(--tinta-fraca);
 }
- 
+
 ol.passos {
   margin: 0;
   padding: 0;
@@ -236,7 +236,7 @@ ol.passos {
   font-size: .85rem;
   line-height: 1.7;
 }
- 
+
 ol.passos li {
   counter-increment: passo;
   display: grid;
@@ -244,63 +244,63 @@ ol.passos li {
   gap: .5rem;
   padding: .15rem 0;
 }
- 
+
 ol.passos li::before {
   content: counter(passo);
   color: var(--tinta-fraca);
   text-align: right;
 }
- 
+
 .vetor {
   display: flex;
   flex-wrap: wrap;
   gap: .25rem;
   margin-top: .2rem;
 }
- 
+
 .vetor span {
   padding: .05rem .4rem;
   border: 1px solid var(--borda);
   border-radius: 2px;
 }
- 
+
 .vetor span.pivo {
   border-color: var(--caneta);
   background: var(--realce);
   color: var(--tinta);
   font-weight: 600;
 }
- 
+
 .corte {
   margin-top: .6rem;
   color: var(--tinta-fraca);
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   font-size: .85rem;
 }
- 
+
 footer {
   max-width: 62rem;
   margin: 2.5rem auto 0;
   color: var(--tinta-fraca);
   font-size: .85rem;
 }
- 
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
 </style>
 </head>
 <body>
- 
+
 <div class="folha">
- 
+
 <header>
   <h1>Algoritmos Fundamentais</h1>
   <p class="subtitulo">Seis algoritmos clássicos, com o caminho que cada um percorre até a resposta. Escolha um, informe os dados e execute.</p>
 </header>
- 
+
 <nav role="tablist" aria-label="Algoritmos"></nav>
- 
+
 <div class="bancada">
   <section class="painel" aria-label="Entrada">
     <h2 id="titulo"></h2>
@@ -310,7 +310,7 @@ footer {
     <input type="text" id="entrada" autocomplete="off" spellcheck="false">
     <button class="executar" id="botao">Executar</button>
   </section>
- 
+
   <section class="painel" aria-label="Resultado">
     <p class="resposta vazia" id="resposta" aria-live="polite">Nenhum resultado ainda.</p>
     <h3 id="cabecalhoPassos" hidden>Passo a passo</h3>
@@ -318,29 +318,29 @@ footer {
     <p class="corte" id="corte" hidden></p>
   </section>
 </div>
- 
+
 </div>
- 
+
 <footer>
   <p>Implementações em Java e JavaScript disponíveis no repositório. As funções desta página são as mesmas dos arquivos <code>.js</code>, com um parâmetro extra que registra os passos para exibição.</p>
 </footer>
- 
+
 <script>
 "use strict";
- 
+
 /* ===================================================================
    ALGORITMOS
    Cada função recebe um array opcional `passos`, usado apenas para
    registrar o caminho percorrido e exibi-lo na tela. A lógica é
    idêntica à dos arquivos entregues em JavaScript e Java.
    =================================================================== */
- 
+
 function Primo(n, passos = []) {
   if (n < 2) {
     passos.push({ texto: n + " é menor que 2, portanto não é primo" });
     return false;
   }
- 
+
   for (let i = 2; i * i <= n; i++) {
     const resto = n % i;
     if (resto === 0) {
@@ -352,10 +352,10 @@ function Primo(n, passos = []) {
   passos.push({ texto: "Nenhum divisor até √" + n + " (≈ " + Math.floor(Math.sqrt(n)) + ")" });
   return true;
 }
- 
+
 function Somatorio(numeros, passos = []) {
   let soma = 0;
- 
+
   for (let i = 0; i < numeros.length; i++) {
     const anterior = soma;
     soma += numeros[i];
@@ -363,18 +363,18 @@ function Somatorio(numeros, passos = []) {
   }
   return soma;
 }
- 
+
 function Fibonacci(n, passos = []) {
   if (n === 0) {
     passos.push({ texto: "F(0) = 0" });
     return 0;
   }
- 
+
   let anterior = 0;
   let atual = 1;
   passos.push({ texto: "F(0) = 0" });
   passos.push({ texto: "F(1) = 1" });
- 
+
   for (let i = 2; i <= n; i++) {
     const proximo = anterior + atual;
     passos.push({ texto: "F(" + i + ") = " + atual + " + " + anterior + " = " + proximo });
@@ -383,11 +383,11 @@ function Fibonacci(n, passos = []) {
   }
   return atual;
 }
- 
+
 function Mdc(a, b, passos = []) {
   a = Math.abs(a);
   b = Math.abs(b);
- 
+
   while (b !== 0) {
     const resto = a % b;
     passos.push({ texto: a + " ÷ " + b + " tem resto " + resto });
@@ -397,7 +397,7 @@ function Mdc(a, b, passos = []) {
   passos.push({ texto: "Resto zerou — o mdc é " + a });
   return a;
 }
- 
+
 function Quicksort(arr, inicio = 0, fim = arr.length - 1, passos = []) {
   if (inicio < fim) {
     const p = Particionar(arr, inicio, fim, passos);
@@ -406,11 +406,11 @@ function Quicksort(arr, inicio = 0, fim = arr.length - 1, passos = []) {
   }
   return arr;
 }
- 
+
 function Particionar(arr, inicio, fim, passos = []) {
   const pivo = arr[fim];
   let i = inicio - 1;
- 
+
   for (let j = inicio; j < fim; j++) {
     if (arr[j] <= pivo) {
       i++;
@@ -418,7 +418,7 @@ function Particionar(arr, inicio, fim, passos = []) {
     }
   }
   [arr[i + 1], arr[fim]] = [arr[fim], arr[i + 1]];
- 
+
   passos.push({
     texto: "Pivô " + pivo + " (trecho " + inicio + "–" + fim + ") fixado no índice " + (i + 1),
     estado: arr.slice(),
@@ -426,10 +426,10 @@ function Particionar(arr, inicio, fim, passos = []) {
   });
   return i + 1;
 }
- 
+
 function Contagem(dados, passos = []) {
   let contador = 0;
- 
+
   for (let i = 0; i < dados.length; i++) {
     if (Number.isInteger(dados[i])) {
       contador++;
@@ -440,33 +440,33 @@ function Contagem(dados, passos = []) {
   }
   return contador;
 }
- 
+
 /* ===================================================================
    LEITURA DE ENTRADA
    =================================================================== */
- 
+
 function arredondar(n) {
   return Math.round(n * 1e10) / 1e10;
 }
- 
+
 function lerInteiro(texto, minimo, maximo) {
   const limpo = texto.trim();
   if (limpo === "") throw new Error("Informe um número.");
   if (!/^-?\d+$/.test(limpo)) throw new Error("Informe um número inteiro, sem casas decimais.");
- 
+
   const n = parseInt(limpo, 10);
   if (minimo !== undefined && n < minimo) throw new Error("O valor precisa ser no mínimo " + minimo + ".");
   if (maximo !== undefined && n > maximo) throw new Error("O valor precisa ser no máximo " + maximo + ".");
   return n;
 }
- 
+
 function lerLista(texto, somenteInteiros) {
   const limpo = texto.trim();
   if (limpo === "") throw new Error("Informe ao menos um número.");
- 
+
   const partes = limpo.split(/[\s,]+/);
   if (partes.length > 300) throw new Error("Informe no máximo 300 números.");
- 
+
   return partes.map(function (parte) {
     if (somenteInteiros && !/^-?\d+$/.test(parte)) {
       throw new Error("“" + parte + "” não é um número inteiro.");
@@ -476,11 +476,11 @@ function lerLista(texto, somenteInteiros) {
     return n;
   });
 }
- 
+
 /* ===================================================================
    CONFIGURAÇÃO DOS ALGORITMOS
    =================================================================== */
- 
+
 const ALGORITMOS = [
   {
     id: "primo",
@@ -568,13 +568,13 @@ const ALGORITMOS = [
     }
   }
 ];
- 
+
 const LIMITE_PASSOS = 150;
- 
+
 /* ===================================================================
    INTERFACE
    =================================================================== */
- 
+
 const nav = document.querySelector("nav");
 const elTitulo = document.getElementById("titulo");
 const elDefinicao = document.getElementById("definicao");
@@ -586,9 +586,9 @@ const elResposta = document.getElementById("resposta");
 const elCabecalhoPassos = document.getElementById("cabecalhoPassos");
 const elPassos = document.getElementById("passos");
 const elCorte = document.getElementById("corte");
- 
+
 let atual = ALGORITMOS[0];
- 
+
 ALGORITMOS.forEach(function (algoritmo) {
   const botao = document.createElement("button");
   botao.className = "aba";
@@ -602,14 +602,14 @@ ALGORITMOS.forEach(function (algoritmo) {
   algoritmo.botao = botao;
   nav.appendChild(botao);
 });
- 
+
 function selecionar(algoritmo) {
   atual = algoritmo;
- 
+
   ALGORITMOS.forEach(function (outro) {
     outro.botao.setAttribute("aria-selected", outro === algoritmo ? "true" : "false");
   });
- 
+
   elTitulo.textContent = algoritmo.titulo;
   elDefinicao.textContent = algoritmo.definicao;
   elRotulo.textContent = algoritmo.rotulo;
@@ -618,7 +618,7 @@ function selecionar(algoritmo) {
   limpar();
   elEntrada.focus();
 }
- 
+
 function limpar() {
   elResposta.className = "resposta vazia";
   elResposta.textContent = "Nenhum resultado ainda.";
@@ -626,10 +626,10 @@ function limpar() {
   elCabecalhoPassos.hidden = true;
   elCorte.hidden = true;
 }
- 
+
 function executar() {
   const passos = [];
- 
+
   let resposta;
   try {
     resposta = atual.executar(elEntrada.value, passos);
@@ -641,21 +641,21 @@ function executar() {
     elCorte.hidden = true;
     return;
   }
- 
+
   elResposta.className = "resposta";
   elResposta.textContent = resposta;
- 
+
   const visiveis = passos.slice(0, LIMITE_PASSOS);
   elPassos.replaceChildren();
- 
+
   visiveis.forEach(function (passo) {
     const item = document.createElement("li");
     const bloco = document.createElement("div");
- 
+
     const linha = document.createElement("div");
     linha.textContent = passo.texto;
     bloco.appendChild(linha);
- 
+
     if (passo.estado) {
       const vetor = document.createElement("div");
       vetor.className = "vetor";
@@ -667,13 +667,13 @@ function executar() {
       });
       bloco.appendChild(vetor);
     }
- 
+
     item.appendChild(bloco);
     elPassos.appendChild(item);
   });
- 
+
   elCabecalhoPassos.hidden = visiveis.length === 0;
- 
+
   if (passos.length > LIMITE_PASSOS) {
     elCorte.hidden = false;
     elCorte.textContent = "Mostrando os primeiros " + LIMITE_PASSOS + " de " + passos.length + " passos.";
@@ -681,14 +681,14 @@ function executar() {
     elCorte.hidden = true;
   }
 }
- 
+
 elBotao.addEventListener("click", executar);
 elEntrada.addEventListener("keydown", function (evento) {
   if (evento.key === "Enter") executar();
 });
- 
+
 selecionar(ALGORITMOS[0]);
 </script>
- 
+
 </body>
 </html>
