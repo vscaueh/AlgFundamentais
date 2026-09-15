@@ -6,6 +6,8 @@ Implementação de algoritmos clássicos em Java e JavaScript.
 
 ```
 AlgFundamentais/
+├── .vscode/
+│   └── launch.json
 ├── Java/
 │   ├── Main.java
 │   ├── Primo.java
@@ -21,6 +23,8 @@ AlgFundamentais/
 │   ├── mdc.js
 │   ├── quicksort.js
 │   └── contagem.js
+├── web/
+│   └── index.html
 └── README.md
 ```
 
@@ -82,6 +86,14 @@ Os valores de entrada estão definidos em constantes no início de cada arquivo.
 | MDC | `48, 18` | 6 |
 | Quicksort | `[5, 3, 8, 1, 9, 2, 7]` | `[1, 2, 3, 5, 7, 8, 9]` |
 | Contagem | `[1, 2.5, 3, 4.7, 5]` | 3 |
+
+## Interface web
+
+O arquivo `web/index.html` é uma página estática que executa os seis algoritmos diretamente no navegador. Para cada algoritmo, a página recebe a entrada, mostra o resultado e exibe o passo a passo percorrido até chegar a ele. Basta abrir o arquivo no navegador; não é necessário servidor nem instalação de dependências.
+
+## Vídeo de depuração
+
+Disponível em: [link]
 
 ## Descrição dos algoritmos
 
