@@ -1,29 +1,31 @@
-function Quicksort(arr, inicio = 0, fim = arr.length - 1) {
-  if (inicio < fim) {
-    const p = Particionar(arr, inicio, fim);
-    Quicksort(arr, inicio, p - 1);
-    Quicksort(arr, p + 1, fim);
+function Quicksort(numeros) {
+  if (!Array.isArray(numeros) || !numeros.every(Number.isFinite)) {
+    throw new TypeError("Informe uma lista de números finitos.");
   }
-  return arr;
+  ordenarTrecho(numeros, 0, numeros.length - 1);
+  return numeros;
 }
-
-function Particionar(arr, inicio, fim) {
-  const pivo = arr[fim];
-  let i = inicio - 1;
-
-  for (let j = inicio; j < fim; j++) {
-    if (arr[j] <= pivo) {
-      i++;
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+function ordenarTrecho(numeros, inicio, fim) {
+  if (inicio >= fim) return;
+  const indicePivo = Particionar(numeros, inicio, fim);
+  ordenarTrecho(numeros, inicio, indicePivo - 1);
+  ordenarTrecho(numeros, indicePivo + 1, fim);
+}
+function Particionar(numeros, inicio, fim) {
+  const pivo = numeros[fim];
+  let indiceMenores = inicio - 1;
+  for (let indice = inicio; indice < fim; indice++) {
+    if (numeros[indice] <= pivo) {
+      indiceMenores++;
+      [numeros[indiceMenores], numeros[indice]] = [numeros[indice], numeros[indiceMenores]];
     }
   }
-  [arr[i + 1], arr[fim]] = [arr[fim], arr[i + 1]];
-  return i + 1;
+  [numeros[indiceMenores + 1], numeros[fim]] = [numeros[fim], numeros[indiceMenores + 1]];
+  return indiceMenores + 1;
 }
-
-const lista = [5, 3, 8, 1, 9, 2, 7];
-
-console.log("--- Ordenação com Quicksort ---");
-console.log("Antes:  " + lista.join(", "));
-Quicksort(lista);
-console.log("Depois: " + lista.join(", "));
+module.exports = Quicksort;
+if (require.main === module) {
+  const lista = [5, 3, 8, 1, 9, 2, 7];
+  console.log("Antes: " + lista.join(", "));
+  console.log("Depois: " + Quicksort(lista).join(", "));
+}

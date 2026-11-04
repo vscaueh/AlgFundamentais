@@ -25,6 +25,10 @@ AlgFundamentais/
 │   └── contagem.js
 ├── web/
 │   └── index.html
+├── tests/
+│   └── *.test.js
+├── package.json
+├── package-lock.json
 └── README.md
 ```
 
@@ -73,6 +77,21 @@ Requer Node.js instalado.
 cd JavaScript
 node primo.js
 ```
+
+## Testes automatizados (entregável 4)
+
+Requer Node.js e npm. Na pasta principal do repositório, execute:
+
+```bash
+npm install
+npm test
+```
+
+O comando executa Jest. Há um arquivo em `tests/` para cada um dos seis algoritmos em `JavaScript/`, com três testes por algoritmo (18 no total). Os testes conferem resultados usuais, casos de borda e entradas inválidas. As funções são exportadas para que possam ser importadas pelos testes. Os exemplos continuam disponíveis com `node JavaScript/primo.js` e os demais arquivos.
+
+As funções validam os tipos de entrada e lançam erros para dados inválidos: listas devem conter números finitos; primo e MDC exigem inteiros seguros; Fibonacci aceita posições inteiras entre 0 e 78; MDC(0, 0) é indefinido. O Quicksort ordena a própria lista recebida e também a devolve.
+
+Os testes automatizados cobrem as implementações em JavaScript. Os arquivos Java e a interface web permanecem disponíveis, mas não integram a suíte Jest.
 
 ## Valores de teste
 

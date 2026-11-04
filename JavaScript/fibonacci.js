@@ -1,20 +1,18 @@
-function Fibonacci(n) {
-  if (n === 0) return 0;
-
+function Fibonacci(posicao) {
+  if (!Number.isSafeInteger(posicao) || posicao < 0 || posicao > 78) {
+    throw new RangeError("A posição deve ser um inteiro entre 0 e 78.");
+  }
+  if (posicao === 0) return 0;
   let anterior = 0;
   let atual = 1;
-
-  for (let i = 2; i <= n; i++) {
+  for (let indice = 2; indice <= posicao; indice++) {
     const proximo = anterior + atual;
     anterior = atual;
     atual = proximo;
   }
   return atual;
 }
-
-const n = 8;
-
-console.log("--- Fibonacci ---");
-for (let i = 0; i <= n; i++) {
-  console.log("Termo " + i + ": " + Fibonacci(i));
+module.exports = Fibonacci;
+if (require.main === module) {
+  for (let posicao = 0; posicao <= 8; posicao++) console.log("Termo " + posicao + ": " + Fibonacci(posicao));
 }

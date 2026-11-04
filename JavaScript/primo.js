@@ -1,13 +1,13 @@
-function Primo(n) {
-  if (n < 2) return false;
-
-  for (let i = 2; i * i <= n; i++) {
-    if (n % i === 0) return false;
+function Primo(numero) {
+  if (!Number.isSafeInteger(numero)) throw new TypeError("Informe um inteiro seguro.");
+  if (numero < 2) return false;
+  for (let divisor = 2; divisor <= Math.sqrt(numero); divisor++) {
+    if (numero % divisor === 0) return false;
   }
   return true;
 }
-
-const num = 9;
-
-console.log("--- Verificador de Número Primo ---");
-console.log("O número " + num + (Primo(num) ? " é primo" : " não é primo"));
+module.exports = Primo;
+if (require.main === module) {
+  const numero = 9;
+  console.log("O número " + numero + (Primo(numero) ? " é primo" : " não é primo"));
+}
