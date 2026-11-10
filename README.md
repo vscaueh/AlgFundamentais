@@ -93,6 +93,12 @@ As funções validam os tipos de entrada e lançam erros para dados inválidos: 
 
 Os testes automatizados cobrem as implementações em JavaScript. Os arquivos Java e a interface web permanecem disponíveis, mas não integram a suíte Jest.
 
+### Evidência da execução
+
+O print abaixo mostra a execução de `npm test`, com 6 conjuntos e 18 testes aprovados:
+
+![Resultado do Jest: 6 conjuntos e 18 testes aprovados](evidencias/testes-jest.png)
+
 ## Valores de teste
 
 Os valores de entrada estão definidos em constantes no início de cada arquivo. Para testar outros casos, basta alterá-los.
